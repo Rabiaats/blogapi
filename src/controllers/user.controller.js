@@ -1,9 +1,6 @@
 "use strict";
 const { BadRequestError } = require('../errors/customError');
 const passwordEncypt = require('../helpers/passwordEncrypt');
-/* -------------------------------------------------------
-    EXPRESSJS - BLOG Project with Mongoose
-------------------------------------------------------- */
 
 // Call Models:
 const {User} = require('../models/user.model')
@@ -27,9 +24,6 @@ module.exports.user = {
       throw new BadRequestError('Password must be 8 characters long')
     };
 
-    //! eger if ten gecebilirse passwordu buradada set edebiliriz
-    // req.body.password = paswordEncypt(req.body.password)
-
     const result = await User.create(req.body)
     res.send(result)
   },
@@ -41,7 +35,6 @@ module.exports.user = {
 
   update: async (req, res) => {
 
-    //! baska birisinin email i kullandigini soyluyoruz ya da daha onceden kaydolunmus
     if(req.body?.email){
       const email = await User.findOne({email: req.body.email})
       if(email){
@@ -79,4 +72,3 @@ module.exports.user = {
   },
 };
 
-/* ------------------------------------------------------- */

@@ -14,35 +14,18 @@ module.exports = {
     const { email, password } = req.body;
 
     if (email && password) {
-        // email ve password gonderildi
-
+        
         const user = await User.findOne({email})
 
             if(user){
-                // User Ok.
-                // password kontrolu yapmaliyiz ama password sifreli -> kullanicinin gonderdigi parolayi sifreleyip o sekilde bakmaliyiz
-
-                // user.password -> veritabanindaki sifre
                 if(user.password == passwordEncrypt(password)){
 
-                    //^ session
-                    //! session burada -> kullanmazsak bu paketi islemler karmasik oluyor
-                    // req.session = {
-                    //     email: user.email,
-                    //     password: user.password
-                    // }
-                    //* kaydettik bankendde cookie ye
-                    // req.session.email = user.email
-                    //! email kullanici ya ait onu acik etmeyelim
+                    //^ Session
                     req.session._id = user._id;
                     req.session.password = user.password;
-                    //! guvenlik ve az yeri oldugu icin sadece bunlari tuttuk 
-                    //& ama biz user fotografini emailini .. kullanmak isteyebiliriz
-                    //& user password degismisse session da tutulan da artik ise yaramiyor -> check user-data from session
 
                     //^ Cookie
                     if(req.body?.remindMe){
-                        // beni hatirla varsa 
                         req.session.remindMe = true
 
                         req.sessionOptions.maxAge = 1000 * 60 *60 *24 * 3
@@ -83,7 +66,3 @@ module.exports = {
 
   },
 };
-
-/*------------------------------------------------------- */
-
-//! custom error yapinca hata yonetimi imkani artiyor

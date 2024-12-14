@@ -1,8 +1,4 @@
 "use strict";
-/* -------------------------------------------------------
-    EXPRESSJS - BLOG Project with Mongoose
-------------------------------------------------------- */
-// Mongoose:
 
 const mongoose = require("mongoose");
 
@@ -49,8 +45,3 @@ const BlogPostSchema = new mongoose.Schema({
 module.exports = {
     BlogPost: mongoose.model('BlogPost', BlogPostSchema)
 }
-
-//! ODM mongodb deki veri ile benim elimdeki veri etkilesimde
-// sema olusturuyoruz -> modele gore gelen veri turlerini mongodb ye kaydediyoruz
-
-// user name-email tanimliyoruz sema da -> buna gore model bu semaya gore calisiyor -> bu semaya bakip calisiyor

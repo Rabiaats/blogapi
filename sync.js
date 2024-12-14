@@ -1,7 +1,4 @@
 "use strict";
-/* -------------------------------------------------------
-    EXPRESSJS - BLOG Project with Mongoose
-------------------------------------------------------- */
 
 const { User } = require('./src/models/user.model')
 const { BlogCategory } = require('./src/models/blogCategory.model')
@@ -28,10 +25,6 @@ module.exports = async () => {
     const blogCategory = await BlogCategory.create({
         name: 'Test Category'
     })
-    // Example Posts:
-    // new Array(elemanSayisi)
-    // const array = [1,2,3]
-    // Array.of(1,2,3)
     for (let key in [...Array(200)]) {
         await BlogPost.create({
             userId: user._id,

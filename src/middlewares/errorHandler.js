@@ -1,7 +1,4 @@
 "use strict";
-/* -------------------------------------------------------
-    EXPRESSJS - Error Handler 
-------------------------------------------------------- */
 
 module.exports = (err, req, res, next) => {
   const statusCode = err.statusCode || res.statusCode || 500;

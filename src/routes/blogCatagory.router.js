@@ -1,7 +1,4 @@
 "use strict";
-/* -------------------------------------------------------
-    EXPRESSJS - BLOG Project with Mongoose
-------------------------------------------------------- */
 
 const router = require("express").Router();
 
@@ -10,10 +7,6 @@ const {blogCategory} = require('../controllers/blogCategory.controller')
 
 //* blog/category
 //* /blog/category/id
-/* ------------------------------------------------------- */
-
-// URL: /blog ->
-// BlogCategory
 
 router.route('/')
     .get(blogCategory.list)
@@ -24,7 +17,5 @@ router.route('/:categoryId')
     .put(blogCategory.update)
     .patch(blogCategory.update)
     .delete(blogCategory.delete)
-
-// BlogCategory
 
 module.exports = router

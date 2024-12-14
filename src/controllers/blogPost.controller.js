@@ -1,19 +1,10 @@
 "use strict";
-/* -------------------------------------------------------
-    EXPRESSJS - BLOG Project with Mongoose
-------------------------------------------------------- */
-
 // Call Models:
 const {BlogPost} = require('../models/blogPost.model')
 const {CustomError} = require('../errors/customError')
-/* ------------------------------------------------------- */
-// BlogPost Controller:
-// /blog/category -> list
+
 module.exports.blogPost = {
   list: async (req, res) => {
-
-    //^ FILTERING - SEARCHING - SORTING - PAGINATION ^\\ BU ISLEMLER middlewares/queryHandler a tasindi
-    //^ res.getModelList & res.getModelListDetails
 
     const data = await res.getModelList(BlogPost, ['userId', 'categoryId'])
 
@@ -28,8 +19,6 @@ module.exports.blogPost = {
 
   create: async (req, res) => {
     
-    // userId yi body de gondermeyelim req.user dan alalim user kayitli artik login
-    // login olan bir user var mi diye kontrol ediyoruz
     if(req.user) req.body.userId = req.user._id;
 
     const result = await BlogPost.create(req.body)
@@ -71,15 +60,3 @@ module.exports.blogPost = {
     res.send(result)
   },
 };
-
-/* ------------------------------------------------------- */
-
-
-// http://127.0.0.1:8000/blog/post?filter[published]=1&search[title]=test 10&sort[title]=asc&page=1
-
-// {
-//   filter: { published: '1' },
-//   search: { title: 'test 10' },
-//   sort: { title: 'asc' },
-//   page: '1'
-// }
